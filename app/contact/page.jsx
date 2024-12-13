@@ -1,17 +1,14 @@
-"use client"
+"use client";
 
-import BlogList from "@/Components/BlogList";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Navbar";
-import Navbar from "@/Components/Header";
+import ContactUs from "@/Components/Contact";
 
-
-export default function Home() {
+export default function ContactPage() {
   return (
     <div className="bg-gray-200">
       <Header />
-      <Navbar/>
-      <BlogList />
+      <ContactUs />
       <Footer />
     </div>
   );
