@@ -28,7 +28,7 @@ const Navbar = () => {
             {/* Container for Logo, Navbar, and Log In / Log Out Button */}
             <div className='flex justify-between items-center'>
                 {/* Logo */}
-                <Image src={assets.logo} width={70} alt='Logo' className='w-[130px] sm:w-auto' />
+                <Image src={assets.logo} width={250} alt='Logo' className='w-[130px] sm:w-auto' />
                 
                 {/* Navbar Links */}
                 <div className='flex justify-center gap-6 flex-grow'>
