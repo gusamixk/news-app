@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Container untuk marquee */
+.marquee-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Menyembunyikan teks yang keluar */
+  }
+  
+  /* Animasi marquee berjalan */
+  @keyframes marquee {
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .color-blink {
+    display: inline-block;
+    white-space: nowrap; /* Mencegah teks membungkus */
+    animation: marquee 15s linear infinite; /* Durasi animasi marquee */
+  }
+  
+  /* Animasi warna kelap-kelip */
+  @keyframes colorBlink {
+    0%, 100% {
+      color: red;
+    }
+    50% {
+      color: black;
+    }
+  }
+  
+  .color-blink {
+    animation: colorBlink 1.5s infinite; /* Durasi perubahan warna */
+  }
+  

@@ -1,15 +1,19 @@
-import { assets } from '@/Assets/assets'
-import Image from 'next/image'
-import Link from 'next/link' // Import Link from Next.js
 import React from 'react'
 
 const Header = () => {
     return (
         <div className='text-center my-8'>
-        <h1 className='text-5xl sm:text-7xl font-medium mt-10'>SELAMAT DATANG DI 
-            JURNALIGHT</h1>
-        <p className='mt-10 max-w-[740px] m-auto text-xs sm:text-base'>Menyediakan berita yang aktual dan terpercaya serta pastinya terupdate</p>
-    </div>
+            <h1 className='text-5xl sm:text-7xl font-medium mt-10'>SELAMAT DATANG DI 
+                JURNALIGHT</h1>
+            {/* Teks berjalan dari kanan ke kiri dengan animasi kelap-kelip */}
+            <div className='mt-10 overflow-hidden'>
+                <div className="marquee-container">
+                    <marquee><p className='text-lg sm:text-2xl font-bold color-blink'>
+                        Menyediakan berita yang aktual dan terpercaya serta pastinya terupdate
+                    </p></marquee>
+                </div>
+            </div>
+        </div>
     )
 }
 
