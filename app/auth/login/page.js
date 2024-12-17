@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import '@/styles/login.css'; // Import file CSS
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,47 +30,40 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Login</h2>
+    <div className="container">
+      <div className="card">
+        <h2>Login</h2>
         <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+          <div className="input-field">
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
-          {error && <p className="text-sm text-red-500 mb-4">{error}</p>}
+          {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
 
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
-            Login
-          </button>
+          <button type="submit" className="button">Login</button>
         </form>
 
-        <div className="mt-4 text-center">
-          <span className="text-sm text-gray-600">Don't have an account? </span>
-          <a href="/auth/signup" className="text-blue-600 hover:text-blue-700">Sign up</a>
+        <div className="text-link">
+          <span>Belum memiliki akun? </span>
+          <a href="/auth/signup">Sign up</a>
         </div>
       </div>
     </div>

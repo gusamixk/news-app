@@ -1,0 +1,81 @@
+/* styles/login.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../Assets/login_bg.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    height: 100vh; 
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(20%);
+    
+  }
+  
+  .card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-field {
+    margin-bottom: 1rem;
+  }
+  
+  .input-field input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    border-color: #81a0c4;
+    box-shadow: 0 0 5px rgba(33, 68, 108, 0.5);
+  }
+  
+  .button {
+    width: 100%;
+    background: #8764b6;
+    color: #fff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.5s;
+}
+
+.button:hover {
+    background: #8764b6;
+    transform: scale(1.05);
+}
+
+  
+  .text-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .text-link a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .text-link a:hover {
+    text-decoration: underline;
+  }
+  
