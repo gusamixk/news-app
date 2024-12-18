@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
 export const ConnectDB = async () =>{
-    await mongoose.connect('mongodb+srv://jurnalight:987654321@cluster0.0wbab.mongodb.net/');
+    await mongoose.connect('mongodb+srv://Jurnalight:zUn9VTqzLoZP44Ie@jurnalight.53dxg.mongodb.net/');
     console.log("DB Connected")  
 }

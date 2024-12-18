@@ -35,6 +35,7 @@ formData.append('image', image);
 const response = await axios.post('/api/blog',formData);
 if (response.data.success){
   toast.success(response.data.msg)
+  setImage(false);
 }
 else{
   toast.error("Error");
