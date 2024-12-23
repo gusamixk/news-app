@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import '@/styles/signup.css'; // Import file CSS
+import { signIn } from 'next-auth/react'; // Import signIn dari NextAuth
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -31,6 +32,15 @@ const SignUp = () => {
       setError('Please fill in all fields');
     }
   };
+
+  const handleGoogleLogin = async () => {
+    // Trigger Google OAuth login through NextAuth
+    const result = await signIn('google', { callbackUrl: '/user' });
+    if (result?.error) {
+      console.error('Google Login failed:', result.error);
+    }
+  };
+
 
   return (
     <div className="signup-container">
@@ -89,8 +99,18 @@ const SignUp = () => {
           </button>
         </form>
 
+        {/* Google OAuth login button */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={handleGoogleLogin}
+            className="w-full py-2 px-4 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+          >
+            Sign Up with Google
+          </button>
+        </div>
+
         <p className="signup-login">
-          Sudah Memiliki Akun ?{' '}
+        Already have an account?{' '}
           <a href="/auth/login">Login here</a>
         </p>
       </div>

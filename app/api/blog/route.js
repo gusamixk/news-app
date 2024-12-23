@@ -1,10 +1,10 @@
 import { ConnectDB } from "../../lib/config/db";
 import BlogModel from "../../lib/models/BlogModel";
-const { NextResponse } = require ("next/server");
+const { NextResponse } = require ("next/server"); 
 import { writeFile } from "fs/promises";
 
 const LoadDB = async () => {
-  await ConnectDB();
+  await ConnectDB(); 
 };
 
 LoadDB();

@@ -3,16 +3,17 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import '@/styles/login.css'; // Import file CSS
+import { signIn } from 'next-auth/react'; // Import signIn dari NextAuth 
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setError(''); // Clear any previous error
+    setError(''); // Clear previous error
 
     // Retrieve stored credentials from localStorage
     const storedEmail = localStorage.getItem('email');
@@ -21,11 +22,18 @@ const Login = () => {
     // Simulate authentication
     if (email === storedEmail && password === storedPassword) {
       localStorage.setItem('isLoggedIn', 'true');
-      console.log('Login success!'); // Debugging log
-      router.push('/blog'); // Redirect to blog page after successful login
+      router.push('/user'); // Redirect after successful login
     } else {
-      console.log('Invalid credentials:', email, password); // Debugging log
       setError('Invalid email or password');
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const result = await signIn('google', { callbackUrl: '/user' });
+
+    if (result?.error) {
+      setError('Google login failed');
+      console.error('Google login error:', result.error);
     }
   };
 
@@ -61,8 +69,18 @@ const Login = () => {
           <button type="submit" className="button">Login</button>
         </form>
 
+        {/* Google Login Button */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={handleGoogleLogin}
+            className="w-full py-2 px-4 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+          >
+            Login with Google
+          </button>
+        </div>
+
         <div className="text-link">
-          <span>Belum memiliki akun? </span>
+          <span>Don't have an account? </span>
           <a href="/auth/signup">Sign up</a>
         </div>
       </div>
