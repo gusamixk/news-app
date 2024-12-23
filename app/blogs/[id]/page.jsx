@@ -6,10 +6,11 @@ import React, { useEffect, useState } from 'react';
 import Footer from "@/Components/Footer";
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import axios from 'axios';
 
 const Page = () => {
-  const paramsPromise = useParams(); // `useParams` sekarang menghasilkan Promise
-  const [params, setParams] = useState(null);
+  const params = useParams(); // `useParams` sekarang menghasilkan Promise
+  const [parameter, setParameter] = useState(null);
   const [data, setData] = useState(null);
 
   const fetchBlogData = async() =>{
@@ -22,22 +23,10 @@ const Page = () => {
   }
 
   useEffect(() => {
-    const fetchParams = async () => {
-      const resolvedParams = await paramsPromise; // Menunggu Promise `params`
-      setParams(resolvedParams);
-    };
-    fetchParams();
-  }, [paramsPromise]);
-
-  useEffect(() => {
-    if (params) {
-      const blog = blog_data.find((blog) => Number(params.id) === blog.id);
-      if (blog) {
-        setData(blog);
-        console.log(blog);
-      }
-    }
-  }, [params]);
+      setParameter(params.id);
+      fetchBlogData()
+   [params]})
+  
 
   if (!data) {
     return <p>Loading...</p>;
@@ -48,7 +37,7 @@ const Page = () => {
       <div className='bg-gray-200 py-5 px-5 md:px-12 lg:px-28'>
         <div className='flex justify-between items-center'>
           <Link href={'/'}>
-            <Image src={assets.logo} width={250}alt='' className='w-[130px] sm:w-auto' />
+            <Image src={assets.logo} width={250}alt='-' className='w-[130px] sm:w-auto' />
           </Link>
           <button className='flex items-center gap-2 font-medium py-1 px-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000]'>
             Log In <Image src={assets.arrow} alt='' />
@@ -62,7 +51,7 @@ const Page = () => {
         <div className='mx-5 max-w-[800px] md:mx-auto mt-[-50px] mb-10'>
           <Image className='border-4 border-black' src={data.image} width={1280} height={700} alt='' />
           <h1 className='my-8 text-[26px] font-semibold'>HOT NEWS</h1>
-          <p>{data.description}</p>
+          <p> {data.description}</p>
           <div className='my-24'>
             <p className='text-green font font-semibold my-4'>SHARE NOW!!!</p>
             <div className='flex'>
