@@ -2,7 +2,7 @@
 
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { ConnectDB } from "@/app/lib/config/db"; // Koneksi MongoDB
+import connectDB from "@/app/lib/config/db"; // Koneksi MongoDB
 import User from "@/app/lib/models/user"; // Model User
 
 const handler = NextAuth({
@@ -14,7 +14,7 @@ const handler = NextAuth({
   ],
   callbacks: {
     async signIn({ user, profile }) {
-      await ConnectDB();  // Koneksi ke MongoDB
+      await connectDB();  // Koneksi ke MongoDB
 
       // Cek apakah user sudah ada berdasarkan Google ID
       const existingUser = await User.findOne({ googleId: profile.sub });
@@ -45,10 +45,11 @@ console.log(existingUser)
   }, 
   secret: process.env.NEXTAUTH_SECRET,  // Secret untuk NextAuth
   pages: {
-    error: '/auth/error',  // Halaman error kustom
-    signIn:'/auth/login',  // Halaman login kustom (opsional)
-    
+    error: '/auth/error',     // Halaman error kustom
+    signIn: '/auth/login',    // Halaman login kustom
+    newUser: '/auth/signup',  // Halaman signup untuk pengguna baru
   },
+  
 });
 
 export { handler as GET, handler as POST };
