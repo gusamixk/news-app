@@ -49,3 +49,32 @@ export async function POST(request) {
 
   return NextResponse.json({ success:true,msg:"Blog Added"});
 }
+
+//membuat api endpoint untuk mendelete blog
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+
+  // Validasi ID
+  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+    return NextResponse.json({ msg: "Invalid ID" }, { status: 400 });
+  }
+
+  const blog = await BlogModel.findById(id);
+
+  if (!blog) {
+    return NextResponse.json({ msg: "Blog not found" }, { status: 404 });
+  }
+
+  try {
+    if (blog.image) {
+      await fs.unlinkSync(`./public${blog.image}`);
+      console.log("Image file deleted successfully");
+    }
+  } catch (error) {
+    console.error("Error deleting file:", error);
+  }
+
+  await BlogModel.findByIdAndDelete(id);
+  return NextResponse.json({ msg: "Blog Deleted" });
+}
+
