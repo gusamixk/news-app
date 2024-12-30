@@ -37,6 +37,13 @@ const Sidebar = () => {
             <Image src={assets.email_icon} alt="Subscription Icon" width={28} />
             <p>Subscription</p>
           </Link>
+          <Link
+            href="/admin/message"
+            className="flex items-center gap-3 px-4 py-3 rounded-md hover:bg-gray-200 transition-colors duration-300 shadow-md border border-gray-300 text-gray-700 font-medium"
+          >
+            <Image src={assets.email_icon} alt="Subscription Icon" width={28} />
+            <p>Messages</p>
+          </Link>
         </div>
       </div>
     </div>
