@@ -1,9 +1,11 @@
 import connectDB from "@/app/lib/config/db";
 import User from "@/app/lib/models/user";
+import { generateToken } from "@/app/utils/jwt";
 
 export async function POST(req) {
   const { email, password } = await req.json();
 
+  // Validasi input
   if (!email || !password) {
     return new Response(
       JSON.stringify({ error: "Please fill in all fields" }),
@@ -17,26 +19,21 @@ export async function POST(req) {
 
     // Cari user berdasarkan email
     const user = await User.findOne({ email });
-    if (!user) {
-      return new Response(
-        JSON.stringify({ error: "User not found" }),
-        { status: 404 }
-      );
-    }
-
-    // Bandingkan password tanpa hashing
-    if (user.password !== password) {
+    if (!user || user.password !== password) {
       return new Response(
         JSON.stringify({ error: "Invalid email or password" }),
         { status: 401 }
       );
     }
 
-    // Login berhasil
+    // Buat token JWT
+    const token = generateToken({ id: user._id, email: user.email }); 
+
     return new Response(
       JSON.stringify({
         message: "Login successful",
         user: { name: user.name, email: user.email },
+        token,
       }),
       { status: 200 }
     );

@@ -1,5 +1,6 @@
 import connectDB from "@/app/lib/config/db"; 
 import User from "@/app/lib/models/user";
+import { generateToken } from "@/app/utils/jwt";
 
 export async function POST(req) {
   const { name, email, password } = await req.json();
@@ -25,21 +26,24 @@ export async function POST(req) {
       );
     }
 
-    // Simpan user ke database tanpa hashing password
+    // Simpan user ke database
     const newUser = await User.create({
       name,
       email,
-      password, // Simpan password dalam plaintext
+      password,
     });
+
+    // Buat token JWT
+    const token = generateToken({ id: newUser._id, email: newUser.email });
 
     return new Response(
       JSON.stringify({
         message: "User created successfully",
         user: { name: newUser.name, email: newUser.email },
+        token,
       }),
       { status: 201 }
     );
-    
   } catch (error) {
     console.error("Signup Error:", error);
     return new Response(

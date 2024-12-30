@@ -1,18 +1,15 @@
 import mongoose from "mongoose";
 
-const connectDB = async () => {
+const connectDB = async () => { 
+  const MONGO_URI = process.env.MONGO_URI; 
+  if (!MONGO_URI) {
+    throw new Error("MongoDB URI is not defined in environment variables");
+  }
+
   try {
-    if (mongoose.connection.readyState >= 1) {
-      console.log("Database already connected");
-      return;
-    }
-
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    // Hapus opsi usang
+    await mongoose.connect(MONGO_URI);
+    console.log("Database connected successfully");
   } catch (error) {
     console.error("Database connection error:", error.message);
     throw new Error("Failed to connect to MongoDB");
