@@ -12,7 +12,6 @@ const connectDB = async () => {
     console.log("MongoDB URI:", process.env.MONGO_URI);
 
     const conn = await mongoose.connect(process.env.MONGO_URI, {
-      dbName: "jurnalight", // Pastikan nama database eksplisit
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

@@ -1,4 +1,4 @@
-import connectDB from "@/app/lib/config/db"; 
+import connectDB from "../../lib/config/db"; 
 import BlogModel from "../../lib/models/BlogModel";
 const { NextResponse } = require ("next/server"); 
 import { writeFile } from "fs/promises";

@@ -1,11 +1,12 @@
 import connectDB from "@/app/lib/config/db";
 import User from "@/app/lib/models/user";
 import { generateToken } from "@/app/utils/jwt";
+import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 
 export async function POST(req) {
   const { email, password } = await req.json();
 
-  // Validasi input
+  // Validate input
   if (!email || !password) {
     return new Response(
       JSON.stringify({ error: "Please fill in all fields" }),
@@ -14,26 +15,35 @@ export async function POST(req) {
   }
 
   try {
-    // Koneksi ke database
+    // Connect to the database
     await connectDB();
 
-    // Cari user berdasarkan email
+    // Find user by email
     const user = await User.findOne({ email });
-    if (!user || user.password !== password) {
+    if (!user) {
       return new Response(
         JSON.stringify({ error: "Invalid email or password" }),
         { status: 401 }
       );
     }
 
-    // Buat token JWT
-    const token = generateToken({ id: user._id, email: user.email }); 
+    // Compare password with the hashed password in the database
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email or password" }),
+        { status: 401 }
+      );
+    }
+
+    // Generate JWT token
+    const token = generateToken({ id: user._id, email: user.email });
 
     return new Response(
       JSON.stringify({
         message: "Login successful",
         user: { name: user.name, email: user.email },
-        token,
+        token,  // Include the JWT token in the response
       }),
       { status: 200 }
     );

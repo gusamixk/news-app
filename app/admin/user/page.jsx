@@ -5,53 +5,85 @@ import { useState, useEffect } from 'react';
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);
   const [status, setStatus] = useState('');
+  const [user, setUser] = useState(null); // State for storing the user data
 
+  // Fetch user data and messages
   useEffect(() => {
-    // Ambil pesan dari API /api/contact
-    const fetchMessages = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('/api/contact');
-        const result = await response.json();
+        // Fetch user data
+        const userResponse = await fetch('/api/auth/login', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`, // Assuming JWT is stored in localStorage
+          },
+        });
 
-        if (response.ok) {
-          setMessages(result.messages);
-        } else {
-          setStatus(result.message);
+        if (!userResponse.ok) {
+          throw new Error('Failed to fetch user data');
         }
+
+        const userResult = await userResponse.json();
+        setUser(userResult.user); // Save user data to state
+
+        // Fetch messages only if user is found
+        if (userResult.user) {
+          const messagesResponse = await fetch('/api/login');
+          const messagesResult = await messagesResponse.json();
+
+          if (messagesResponse.ok) {
+            setMessages(messagesResult.messages);
+          } else {
+            setStatus(messagesResult.message);
+          }
+        }
+
       } catch (error) {
-        setStatus('Gagal mengambil pesan');
+        setStatus('Failed to fetch user or messages');
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchMessages();
+    fetchData();
   }, []);
 
-  // Fungsi untuk menghapus pesan
+  // Function to delete a message
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`/api/contact?id=${id}`, {
+      const response = await fetch(`/api/messages?id=${id}`, {
         method: 'DELETE',
       });
 
       const result = await response.json();
-      
+
       if (response.ok) {
-        // Menghapus pesan yang telah dihapus dari state
+        // Remove deleted message from state
         setMessages((prevMessages) => prevMessages.filter((msg) => msg._id !== id));
-        alert(result.message);  // Menampilkan pesan sukses
+        alert(result.message);  // Show success message
       } else {
-        alert(result.error || "Gagal menghapus pesan!");
+        alert(result.error || "Failed to delete message!");
       }
     } catch (error) {
       console.error("Delete error:", error);
-      alert("Gagal menghapus pesan!");
+      alert("Failed to delete message!");
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto mt-8">
       <h2 className="text-2xl font-semibold mb-4">Pesan yang Masuk</h2>
+
       {status && <p className="text-red-500">{status}</p>}
+
+      {user ? (
+        <div className="mb-4">
+          <p className="font-semibold">Logged in as: {user.name}</p>
+          <p>Email: {user.email}</p>
+        </div>
+      ) : (
+        <p className="text-gray-500">Loading user data...</p>
+      )}
+
       <table className="min-w-full table-auto border-collapse">
         <thead>
           <tr>
@@ -64,8 +96,7 @@ const AdminMessages = () => {
         </thead>
         <tbody>
           {messages.map((msg) => (
-            // Pastikan msg._id atau msg.id ada dan unik
-            <tr key={msg._id || msg.id || msg.name}> 
+            <tr key={msg._id || msg.id || msg.name}>
               <td className="border-b p-2">{msg.name}</td>
               <td className="border-b p-2">{msg.email}</td>
               <td className="border-b p-2">{msg.message}</td>

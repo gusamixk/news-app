@@ -29,6 +29,13 @@ const Sidebar = () => {
             <Image src={assets.blog_icon} alt="Blog List Icon" width={28} />
             <p>Blog List</p>
           </Link>
+          <Link
+            href="/admin/user"
+            className="flex items-center gap-3 px-4 py-3 rounded-md hover:bg-gray-200 transition-colors duration-300 shadow-md border border-gray-300 text-gray-700 font-medium"
+          >
+            <Image src={assets.email_icon} alt="Subscription Icon" width={28} />
+            <p>User</p>
+          </Link>
 
           <Link
             href="/admin/subscription"
