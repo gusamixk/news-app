@@ -1,9 +1,22 @@
 import mongoose from "mongoose";
 
-export const ConnectDB = async () =>{
-   const conn = await mongoose.connect('mongodb+srv://Jurnalight:zUn9VTqzLoZP44Ie@jurnalight.53dxg.mongodb.net/');
+const connectDB = async () => {
+  try {
+    if (mongoose.connection.readyState >= 1) {
+      console.log("Database already connected");
+      return;
+    }
 
-   console.log(conn)
-    console.log("DB Connected")   
-}
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error("Database connection error:", error.message);
+    throw new Error("Failed to connect to MongoDB");
+  }
+};
+
+export default connectDB;

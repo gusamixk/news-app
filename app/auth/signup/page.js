@@ -11,36 +11,46 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const router = useRouter();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
-    if (name && email && password) {
-      localStorage.setItem('name', name);
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
 
-      router.push('/auth/login');
-    } else {
-      setError('Please fill in all fields');
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+
+      setSuccess('Signup successful! Redirecting to login page...');
+      setTimeout(() => router.push('/auth/login'), 2000);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
   const handleGoogleLogin = async () => {
-    // Trigger Google OAuth login through NextAuth
     const result = await signIn('google', { callbackUrl: '/user' });
     if (result?.error) {
       console.error('Google Login failed:', result.error);
+      setError('Google Login failed');
     }
   };
-
 
   return (
     <div className="signup-container">
@@ -93,6 +103,7 @@ const SignUp = () => {
           </div>
 
           {error && <p className="signup-error">{error}</p>}
+          {success && <p className="signup-success">{success}</p>}
 
           <button type="submit" className="signup-button">
             Sign Up
@@ -110,8 +121,10 @@ const SignUp = () => {
         </div>
 
         <p className="signup-login">
-        Already have an account?{' '}
-          <a href="/auth/login">Login here</a>
+          Already have an account?{' '}
+          <a href="/auth/login" className="signup-link">
+            Login here
+          </a>
         </p>
       </div>
     </div>

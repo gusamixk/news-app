@@ -3,28 +3,39 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import '@/styles/login.css'; // Import file CSS
-import { signIn } from 'next-auth/react'; // Import signIn dari NextAuth 
+import { signIn } from 'next-auth/react'; // Import signIn dari NextAuth
 
 const Login = () => {
-  const [email, setEmail] = useState(''); 
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError(''); // Clear previous error
 
-    // Retrieve stored credentials from localStorage
-    const storedEmail = localStorage.getItem('email');
-    const storedPassword = localStorage.getItem('password');
+    // Kirim data login ke API
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+ 
+      const data = await res.json();
 
-    // Simulate authentication
-    if (email === storedEmail && password === storedPassword) {
-      localStorage.setItem('isLoggedIn', 'true');
-      router.push('/user'); // Redirect after successful login
-    } else {
-      setError('Invalid email or password');
+      if (!res.ok) {
+        throw new Error(data.error || 'Invalid email or password');
+      }
+
+      // Simpan status login jika login berhasil (optional)
+      localStorage.setItem('isLoggedIn', 'true'); // Simpan status login
+
+      // Redirect ke halaman user setelah login sukses
+      router.push('/user');
+    } catch (err) {
+      setError(err.message); // Tampilkan error jika terjadi kesalahan
     }
   };
 
