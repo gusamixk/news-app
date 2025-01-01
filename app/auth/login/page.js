@@ -33,7 +33,7 @@ const Login = () => {
       localStorage.setItem('isLoggedIn', 'true'); // Simpan status login
 
       // Redirect ke halaman user setelah login sukses
-      router.push('/user');
+      router.push('/admin');
     } catch (err) {
       setError(err.message); // Tampilkan error jika terjadi kesalahan
     }
