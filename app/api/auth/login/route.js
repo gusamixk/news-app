@@ -1,7 +1,6 @@
 import connectDB from "@/app/lib/config/db";
 import User from "@/app/lib/models/user";
 import { generateToken } from "@/app/utils/jwt";
-import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 
 export async function POST(req) {
   const { email, password } = await req.json();
@@ -27,9 +26,8 @@ export async function POST(req) {
       );
     }
 
-    // Compare password with the hashed password in the database
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
+    // Compare password directly (not secure)
+    if (password !== user.password) {
       return new Response(
         JSON.stringify({ error: "Invalid email or password" }),
         { status: 401 }
@@ -43,7 +41,7 @@ export async function POST(req) {
       JSON.stringify({
         message: "Login successful",
         user: { name: user.name, email: user.email },
-        token,  // Include the JWT token in the response
+        token, // Include the JWT token in the response
       }),
       { status: 200 }
     );

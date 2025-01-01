@@ -46,8 +46,7 @@ console.log(existingUser)
   secret: process.env.NEXTAUTH_SECRET,  // Secret untuk NextAuth
   pages: {
     error: '/auth/error',     // Halaman error kustom
-    signIn: '/auth/login',    // Halaman login kustom
-    newUser: '/auth/signup',  // Halaman signup untuk pengguna baru
+    signIn: '/auth/user',    // Halaman login kustom
   },
   
 });
