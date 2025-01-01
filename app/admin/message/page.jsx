@@ -34,54 +34,78 @@ const AdminMessages = () => {
       });
 
       const result = await response.json();
-      
+
       if (response.ok) {
         // Menghapus pesan yang telah dihapus dari state
         setMessages((prevMessages) => prevMessages.filter((msg) => msg._id !== id));
-        alert(result.message);  // Menampilkan pesan sukses
+        alert(result.message); // Menampilkan pesan sukses
       } else {
-        alert(result.error || "Gagal menghapus pesan!");
+        alert(result.error || 'Gagal menghapus pesan!');
       }
     } catch (error) {
-      console.error("Delete error:", error);
-      alert("Gagal menghapus pesan!");
+      console.error('Delete error:', error);
+      alert('Gagal menghapus pesan!');
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-4">Pesan yang Masuk</h2>
-      {status && <p className="text-red-500">{status}</p>}
-      <table className="min-w-full table-auto border-collapse">
-        <thead>
-          <tr>
-            <th className="border-b p-2">Nama</th>
-            <th className="border-b p-2">Email</th>
-            <th className="border-b p-2">Pesan</th>
-            <th className="border-b p-2">Status</th>
-            <th className="border-b p-2">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {messages.map((msg) => (
-            // Pastikan msg._id atau msg.id ada dan unik
-            <tr key={msg._id || msg.id || msg.name}> 
-              <td className="border-b p-2">{msg.name}</td>
-              <td className="border-b p-2">{msg.email}</td>
-              <td className="border-b p-2">{msg.message}</td>
-              <td className="border-b p-2">{msg.status}</td>
-              <td className="border-b p-2">
-                <button 
-                  onClick={() => handleDelete(msg._id)} 
-                  className="text-red-500 hover:text-red-700"
-                >
-                  Hapus
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-5xl">
+        <h2 className="text-2xl font-bold mb-6">Pesan yang Masuk</h2>
+        {status && <p className="text-red-500 mb-4">{status}</p>}
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+            <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
+              <tr>
+                <th className="py-3 px-6 text-left">Nama</th>
+                <th className="py-3 px-6 text-left">Email</th>
+                <th className="py-3 px-6 text-left">Pesan</th>
+                <th className="py-3 px-6 text-left">Status</th>
+                <th className="py-3 px-6 text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-600 text-sm">
+              {messages.length > 0 ? (
+                messages.map((msg) => (
+                  <tr
+                    key={msg._id || msg.id || msg.name}
+                    className="border-b border-gray-200 hover:bg-gray-50"
+                  >
+                    <td className="py-3 px-6">{msg.name}</td>
+                    <td className="py-3 px-6">{msg.email}</td>
+                    <td className="py-3 px-6">{msg.message}</td>
+                    <td className="py-3 px-6">
+                      <span
+                        className={`py-1 px-3 rounded-full text-xs ${
+                          msg.status === 'read'
+                            ? 'bg-green-100 text-green-600'
+                            : 'bg-yellow-100 text-yellow-600'
+                        }`}
+                      >
+                        {msg.status || 'Unread'}
+                      </span>
+                    </td>
+                    <td className="py-3 px-6 text-center">
+                      <button
+                        onClick={() => handleDelete(msg._id)}
+                        className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-400 transition duration-200"
+                      >
+                        Hapus
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="py-6 text-center text-gray-500">
+                    Tidak ada pesan masuk
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

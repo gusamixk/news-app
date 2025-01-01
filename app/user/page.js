@@ -2,7 +2,7 @@
 
 import BlogList from "@/Components/BlogList";
 import Footer from "@/Components/Footer";
-import Header from "@/Components/Navbar";
+import Header from "@/Components/UserComponents/Navbar";
 import Navbar from "@/Components/Header";
 
 

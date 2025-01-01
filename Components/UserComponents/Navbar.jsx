@@ -37,12 +37,12 @@ const Navbar = () => {
                             Home
                         </button>
                     </Link>
-                    <Link href="/contact" passHref>
+                    <Link href="../contact" passHref>
                         <button className='text-sm font-medium py-2 px-6 border-b-2 border-transparent hover:border-stone-700'>
                             Contact Us
                         </button>
                     </Link>
-                    <Link href="/membership" passHref>
+                    <Link href="/upload" passHref>
                         <button className='text-sm font-medium py-2 px-6 border-b-2 border-transparent hover:border-stone-700'>
                             Upload Artikel
                         </button>
@@ -70,4 +70,4 @@ const Navbar = () => {
     );
 };
 
-export default Navigator;
+export default Navbar;

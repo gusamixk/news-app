@@ -1,120 +1,98 @@
-'use client'; // Mark component as a client component
+'use client';
 
-import { useState, useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
-const AdminMessages = () => {
-  const [messages, setMessages] = useState([]);
-  const [status, setStatus] = useState('');
-  const [user, setUser] = useState(null); // State for storing the user data
+const AdminUsersPage = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Fetch user data and messages
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch user data
-        const userResponse = await fetch('/api/auth/login', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`, // Assuming JWT is stored in localStorage
-          },
-        });
-
-        if (!userResponse.ok) {
-          throw new Error('Failed to fetch user data');
-        }
-
-        const userResult = await userResponse.json();
-        setUser(userResult.user); // Save user data to state
-
-        // Fetch messages only if user is found
-        if (userResult.user) {
-          const messagesResponse = await fetch('/api/login');
-          const messagesResult = await messagesResponse.json();
-
-          if (messagesResponse.ok) {
-            setMessages(messagesResult.messages);
-          } else {
-            setStatus(messagesResult.message);
-          }
-        }
-
-      } catch (error) {
-        setStatus('Failed to fetch user or messages');
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // Function to delete a message
-  const handleDelete = async (id) => {
+  const fetchUsers = async () => {
     try {
-      const response = await fetch(`/api/messages?id=${id}`, {
-        method: 'DELETE',
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Remove deleted message from state
-        setMessages((prevMessages) => prevMessages.filter((msg) => msg._id !== id));
-        alert(result.message);  // Show success message
-      } else {
-        alert(result.error || "Failed to delete message!");
-      }
+      const response = await axios.get('/api/users');
+      console.log(response.data); // Log data untuk memastikan API bekerja
+      setUsers(response.data.users);
     } catch (error) {
-      console.error("Delete error:", error);
-      alert("Failed to delete message!");
+      console.error('Error loading users:', error);
+      toast.error('Failed to load users');
+    } finally {
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const handleAction = (action, userId) => {
+    console.log(`${action} user with ID: ${userId}`);
+  };
+
   return (
-    <div className="max-w-4xl mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-4">Pesan yang Masuk</h2>
-
-      {status && <p className="text-red-500">{status}</p>}
-
-      {user ? (
-        <div className="mb-4">
-          <p className="font-semibold">Logged in as: {user.name}</p>
-          <p>Email: {user.email}</p>
-        </div>
-      ) : (
-        <p className="text-gray-500">Loading user data...</p>
-      )}
-
-      <table className="min-w-full table-auto border-collapse">
-        <thead>
-          <tr>
-            <th className="border-b p-2">Nama</th>
-            <th className="border-b p-2">Email</th>
-            <th className="border-b p-2">Pesan</th>
-            <th className="border-b p-2">Status</th>
-            <th className="border-b p-2">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {messages.map((msg) => (
-            <tr key={msg._id || msg.id || msg.name}>
-              <td className="border-b p-2">{msg.name}</td>
-              <td className="border-b p-2">{msg.email}</td>
-              <td className="border-b p-2">{msg.message}</td>
-              <td className="border-b p-2">{msg.status}</td>
-              <td className="border-b p-2">
-                <button 
-                  onClick={() => handleDelete(msg._id)} 
-                  className="text-red-500 hover:text-red-700"
-                >
-                  Hapus
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-6xl mx-auto bg-white shadow-md rounded-lg p-6">
+        <h1 className="text-2xl font-bold mb-6">Manage Users</h1>
+        {loading ? (
+          <div className="text-center text-lg">Loading...</div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+              <thead className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+                <tr>
+                  <th className="py-3 px-6 text-left">User Name</th>
+                  <th className="py-3 px-6 text-left">Email</th>
+                  <th className="py-3 px-6 text-center">Status</th>
+                  <th className="py-3 px-6 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-600 text-sm">
+                {users.length > 0 ? (
+                  users.map((user) => (
+                    <tr key={user._id} className="border-b border-gray-200 hover:bg-gray-50">
+                      <td className="py-3 px-6 text-left">{user.name}</td>
+                      <td className="py-3 px-6 text-left">{user.email}</td>
+                      <td className="py-3 px-6 text-center">
+                        <span
+                          className={`py-1 px-3 rounded-full text-xs ${
+                            user.status === 'Active'
+                              ? 'bg-green-100 text-green-600'
+                              : 'bg-yellow-100 text-yellow-600'
+                          }`}
+                        >
+                          {user.status || 'Active'}
+                        </span>
+                      </td>
+                      <td className="py-3 px-6 text-center">
+                        <button
+                          onClick={() => handleAction('block', user._id)}
+                          className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-400 transition duration-200"
+                        >
+                          Block
+                        </button>
+                        <button
+                          onClick={() => handleAction('delete', user._id)}
+                          className="bg-red-500 text-white py-1 px-3 rounded ml-2 hover:bg-red-400 transition duration-200"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="py-6 text-center text-gray-500">
+                      No users found
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default AdminMessages;
+export default AdminUsersPage;

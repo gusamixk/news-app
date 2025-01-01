@@ -74,4 +74,4 @@ else{
   )
 }
 
-export default page
+export default page;

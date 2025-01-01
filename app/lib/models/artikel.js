@@ -1,4 +1,6 @@
-import mongoose from 'mongoose';
+// app/lib/models/article.js
+
+import mongoose from "mongoose";
 
 const articleSchema = new mongoose.Schema({
   title: {
@@ -9,22 +11,16 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: {
-    type: String,
-    enum: ['pending', 'approved', 'rejected'],
-    default: 'pending',
-  },
   author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Assuming you have a User model for user reference
+    type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  status: {
+    type: String,
+    default: "draft", // Default status
   },
-});
+}, { timestamps: true });
 
-const Article = mongoose.models.Article || mongoose.model('Article', articleSchema);
+const Article = mongoose.models.Article || mongoose.model("Article", articleSchema);
 
 export default Article;
