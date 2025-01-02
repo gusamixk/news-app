@@ -4,8 +4,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/gusamixk/news-app)
 ![GitHub stars](https://img.shields.io/github/stars/gusamixk/news-app?style=social)
 
-**Jurnalight** adalah platform blog berita online yang menghadirkan berita terkini dengan fitur eksklusif untuk pengguna premium. Nikmati pengalaman membaca berita yang cepat, aman, dan terorganisir dengan antarmuka modern.
-
+** Web Blog Jurnalight** Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan berita terkini dengan fitur eksklusif untuk pengguna yang terdaftar. Dengan Jurnalight, pengguna dapat menikmati berita terbaru, artikel mendalam, serta layanan premium yang memungkinkan pengguna mengunggah berita melalui admin. Platform ini memberikan akses mudah ke berita dengan antarmuka yang intuitif dan modern.
 ---
 
 ## 🚀 Fitur Utama
@@ -25,7 +24,7 @@
 
 1. **Pengguna Biasa**: Membaca berita tanpa langganan.
 2. **Pengguna Premium**: Akses penuh dan fitur unggah berita.
-3. **Admin**: Mengelola konten, pengguna, dan transaksi.
+3. **Admin**: Mengelola Web, pengguna, dan transaksi.
 
 ---
 
@@ -52,4 +51,29 @@ Pastikan Anda telah menginstal perangkat berikut di sistem Anda:
 1. **Clone repositori ini**:
    ```bash
    git clone https://github.com/gusamixk/news-app.git
+
+2. **Masuk Ke Direktori Proyek Dan Install Dependensi**
+   ```bash
+   cd news-app
+   npm install
+
+3.**Konfigurasikan file .env: Setelah dependensi terinstal, buat file .env di direktori proyek dan tambahkan konfigurasi berikut (gantilah dengan nilai Anda sendiri):**:
+   ```env
+   PORT=5000
+   MONGO_URI=your_mongodb_uri
+   JWT_SECRET=your_jwt_secret
+   MIDTRANS_SERVER_KEY=your_midtrans_server_key
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+4. **Jalankan Aplikasi** :
+   ```bash
+    npm run dev
+
+5.**Buka Di Browser**:
+   ```bash
+   http://localhost:3000
+
+
+
 
