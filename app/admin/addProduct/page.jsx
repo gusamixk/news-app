@@ -63,7 +63,7 @@ else{
         <textarea name='description' onChange={onChangeHandler} value={data.description} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type="text" placeholder='tulis konten disini' required/>
         <p className='text-xl mt-4'>Blog category</p>
         <select name="category" onChange={onChangeHandler} value={data.category} className='w-40 mt-4 px-4 py-3 border text-gray'>
-            <option value="Startup">Startup</option>
+            <option value="Startup">Politik</option>
             <option value="Technology">Technology</option>
             <option value="Lifestyle">Lifestyle</option>
         </select>

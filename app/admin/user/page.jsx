@@ -43,7 +43,7 @@ const AdminUsersPage = () => {
                   <th className="py-3 px-6 text-left">User Name</th>
                   <th className="py-3 px-6 text-left">Email</th>
                   <th className="py-3 px-6 text-center">Status</th>
-                  <th className="py-3 px-6 text-center">Actions</th>
+                  
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm">
@@ -62,20 +62,6 @@ const AdminUsersPage = () => {
                         >
                           {user.status || 'Active'}
                         </span>
-                      </td>
-                      <td className="py-3 px-6 text-center">
-                        <button
-                          onClick={() => handleAction('block', user._id)}
-                          className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-400 transition duration-200"
-                        >
-                          Block
-                        </button>
-                        <button
-                          onClick={() => handleAction('delete', user._id)}
-                          className="bg-red-500 text-white py-1 px-3 rounded ml-2 hover:bg-red-400 transition duration-200"
-                        >
-                          Delete
-                        </button>
                       </td>
                     </tr>
                   ))

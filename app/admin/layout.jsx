@@ -1,10 +1,21 @@
+'use client';
 import Sidebar from './../../Components/AdminComponents/Sidebar';
 import { assets } from '@/Assets/assets';
 import Image from 'next/image';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation';
 
 export default function Layout({ children }) {
+  const router = useRouter();
+
+  // Logout handler
+  const handleLogout = () => {
+    // You can also clear any auth tokens or session data here
+    localStorage.removeItem('authToken');  // Example: clear the stored token
+    router.push('/auth/login/');  // Redirect to login page
+  };
+
   return (
     <>
       <div className="flex min-h-screen bg-gray-100">
@@ -21,7 +32,14 @@ export default function Layout({ children }) {
           {/* Header */}
           <div className="flex items-center justify-between w-full py-4 px-6 sm:px-12 bg-white shadow-md">
             <h3 className="text-lg font-semibold text-gray-700">Admin Panel</h3>
-            <Image src={assets.profile_icon} width={40} height={40} alt="Profile Icon" className="rounded-full" />
+            
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="text-white bg-blue-500 hover:bg-red-600 px-4 py-2 rounded-md text-sm font-semibold"
+            >
+              Logout
+            </button>
           </div>
 
           {/* Dynamic Children */}

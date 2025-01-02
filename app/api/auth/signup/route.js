@@ -9,7 +9,7 @@ export async function POST(req) {
   if (!name || !email || !password) {
     return new Response(
       JSON.stringify({ error: "Please fill in all fields" }),
-      { status: 400 } 
+      { status: 400 }
     );
   }
 
