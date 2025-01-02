@@ -1,8 +1,8 @@
 "use client"; 
 
 import Footer from "@/Components/Footer";
-import Header from "@/Components/Navbar";
 import ContactUs from "@/Components/Contact"; 
+import Header from "@/Components/UserComponents/Navbar";
 
 export default function ContactPage() {
   return (
