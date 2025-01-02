@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌟 Jurnalight 🌟
 
-## Getting Started
+![GitHub last commit](https://img.shields.io/github/last-commit/gusamixk/news-app)
+![GitHub issues](https://img.shields.io/github/issues/gusamixk/news-app)
+![GitHub stars](https://img.shields.io/github/stars/gusamixk/news-app?style=social)
 
-First, run the development server:
+**Jurnalight** adalah platform blog berita online yang menghadirkan berita terkini dengan fitur eksklusif untuk pengguna premium. Nikmati pengalaman membaca berita yang cepat, aman, dan terorganisir dengan antarmuka modern.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Fitur Utama
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+| Fitur                     | Deskripsi                                                                                 |
+|---------------------------|-------------------------------------------------------------------------------------------|
+| **OAuth**                 | Login/Register dengan Google untuk autentikasi mudah.                                    |
+| **JWT (JSON Web Token)**  | Keamanan akses dengan token autentikasi.                                                 |
+| **Payment Gateway**       | Sistem pembayaran premium melalui Midtrans Snap.                                         |
+| **Authorization**         | Role-based access control (Admin & Member).                                              |
+| **Admin Panel**           | CRUD berita, manajemen pengguna, dan verifikasi pembayaran.                              |
+| **Beranda & Artikel**     | Halaman beranda dan artikel berita responsif dengan kategori terorganisir.                |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🎯 Target Pengguna
 
-To learn more about Next.js, take a look at the following resources:
+1. **Pengguna Biasa**: Membaca berita tanpa langganan.
+2. **Pengguna Premium**: Akses penuh dan fitur unggah berita.
+3. **Admin**: Mengelola konten, pengguna, dan transaksi.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Teknologi yang Digunakan
 
-## Deploy on Vercel
+- **Frontend**: [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/)
+- **Backend**: [Node.js](https://nodejs.org/), JWT
+- **Database**: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- **Payment Gateway**: [Midtrans Snap](https://midtrans.com/id/snap)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ Instalasi
+
+### Prasyarat
+- **Node.js**
+- **MongoDB Atlas** akun
+- **Midtrans** akun
+- **Google Developer Console**
+
+### Langkah Instalasi
+1. Clone repositori ini:
+   ```bash
+   git clone https://github.com/gusamixk/news-app.git
