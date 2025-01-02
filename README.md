@@ -41,12 +41,15 @@
 ## ⚙️ Instalasi
 
 ### Prasyarat
-- **Node.js**
-- **MongoDB Atlas** akun
-- **Midtrans** akun
-- **Google Developer Console**
+Pastikan Anda telah menginstal perangkat berikut di sistem Anda:
+- **Node.js**: Untuk menjalankan server dan aplikasi.
+- **MongoDB Atlas**: Untuk menyimpan data aplikasi.
+- **Midtrans Snap**: Untuk menangani pembayaran.
+- **Google Developer Console**: Untuk konfigurasi OAuth.
 
 ### Langkah Instalasi
-1. Clone repositori ini:
+
+1. **Clone repositori ini**:
    ```bash
    git clone https://github.com/gusamixk/news-app.git
+
