@@ -18,7 +18,7 @@ Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan be
 | **JWT (JSON Web Token)**  | Keamanan akses dengan token autentikasi.                                                 |
 | **Payment Gateway**       | Sistem pembayaran premium melalui Midtrans Snap.                                         |
 | **Authorization**         | Role-based access control (Admin & Member).                                              |
-| **Admin Panel**           | CRUD berita, manajemen pengguna, dan verifikasi pembayaran.                              |
+| **Admin Panel**           | CRUD berita, manajemen user, dan verifikasi pembayaran.                              |
 | **Beranda & Artikel**     | Halaman beranda dan artikel berita responsif dengan kategori terorganisir.               |
 
 ---
