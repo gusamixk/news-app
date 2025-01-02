@@ -9,7 +9,7 @@ const UploadArticle = () => {
   const [responseMessage, setResponseMessage] = useState("");
 
   // Link WhatsApp admin untuk menerima foto
-  const adminWhatsappNumber = "62xxxxxxxxxx"; // Ganti dengan nomor WhatsApp admin
+  const adminWhatsappNumber = "6282338507373"; // Ganti dengan nomor WhatsApp admin
   const whatsappLink = `https://wa.me/${adminWhatsappNumber}?text=Halo%20Admin%2C%20saya%20ingin%20mengirimkan%20foto%20untuk%20artikel%20"${title}"`;
 
   // Fungsi untuk menangani pengiriman formulir
@@ -29,7 +29,7 @@ const UploadArticle = () => {
 
     // Tanggapan dari API
     if (res.ok) {
-      setResponseMessage("Artikel berhasil di-upload!");
+      setResponseMessage("Artikel berhasil di-upload! Tunggu konfirmasi dari admin");
       setTitle(""); // Reset form fields setelah artikel di-upload
       setContent("");
       setAuthorName("");

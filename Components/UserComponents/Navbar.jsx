@@ -32,17 +32,17 @@ const Navbar = () => {
                 
                 {/* Navbar Links */}
                 <div className='flex justify-center gap-6 flex-grow'>
-                    <Link href="/" passHref>
+                    <Link href="/user" passHref>
                         <button className='text-sm font-medium py-2 px-6 border-b-2 border-transparent hover:border-stone-700'>
                             Home
                         </button>
                     </Link>
-                    <Link href="../contact" passHref>
+                    <Link href="/user/contact" passHref>
                         <button className='text-sm font-medium py-2 px-6 border-b-2 border-transparent hover:border-stone-700'>
                             Contact Us
                         </button>
                     </Link>
-                    <Link href="/upload" passHref>
+                    <Link href="/user/upload" passHref>
                         <button className='text-sm font-medium py-2 px-6 border-b-2 border-transparent hover:border-stone-700'>
                             Upload Artikel
                         </button>
