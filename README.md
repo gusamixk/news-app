@@ -4,7 +4,8 @@
 ![GitHub issues](https://img.shields.io/github/issues/gusamixk/news-app)
 ![GitHub stars](https://img.shields.io/github/stars/gusamixk/news-app?style=social)
 
-** Web Blog Jurnalight** Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan berita terkini dengan fitur eksklusif untuk pengguna yang terdaftar. Dengan Jurnalight, pengguna dapat menikmati berita terbaru, artikel mendalam, serta layanan premium yang memungkinkan pengguna mengunggah berita melalui admin. Platform ini memberikan akses mudah ke berita dengan antarmuka yang intuitif dan modern.
+** Web Blog Jurnalight** 
+Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan berita terkini dengan fitur eksklusif untuk pengguna yang terdaftar. Dengan Jurnalight, pengguna dapat menikmati berita terbaru, artikel mendalam, serta layanan premium yang memungkinkan pengguna mengunggah berita melalui admin. Platform ini memberikan akses mudah ke berita dengan antarmuka yang intuitif dan modern.
 ---
 
 ## 🚀 Fitur Utama
