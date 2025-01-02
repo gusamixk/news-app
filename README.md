@@ -4,20 +4,22 @@
 ![GitHub issues](https://img.shields.io/github/issues/gusamixk/news-app)
 ![GitHub stars](https://img.shields.io/github/stars/gusamixk/news-app?style=social)
 
-** Web Blog Jurnalight** 
+**Web Blog Jurnalight**
+
 Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan berita terkini dengan fitur eksklusif untuk pengguna yang terdaftar. Dengan Jurnalight, pengguna dapat menikmati berita terbaru, artikel mendalam, serta layanan premium yang memungkinkan pengguna mengunggah berita melalui admin. Platform ini memberikan akses mudah ke berita dengan antarmuka yang intuitif dan modern.
+
 ---
 
 ## 🚀 Fitur Utama
 
 | Fitur                     | Deskripsi                                                                                 |
 |---------------------------|-------------------------------------------------------------------------------------------|
-| **OAuth**                 | Login/Register dengan Google untuk autentikasi mudah.                                    |
+| **OAuth**                 | Login/Register dengan Google untuk autentikasi mudah.                                     |
 | **JWT (JSON Web Token)**  | Keamanan akses dengan token autentikasi.                                                 |
 | **Payment Gateway**       | Sistem pembayaran premium melalui Midtrans Snap.                                         |
 | **Authorization**         | Role-based access control (Admin & Member).                                              |
 | **Admin Panel**           | CRUD berita, manajemen pengguna, dan verifikasi pembayaran.                              |
-| **Beranda & Artikel**     | Halaman beranda dan artikel berita responsif dengan kategori terorganisir.                |
+| **Beranda & Artikel**     | Halaman beranda dan artikel berita responsif dengan kategori terorganisir.               |
 
 ---
 
@@ -52,7 +54,6 @@ Pastikan Anda telah menginstal perangkat berikut di sistem Anda:
 1. **Clone repositori ini**:
    ```bash
    git clone https://github.com/gusamixk/news-app.git
-
 2. **Masuk Ke Direktori Proyek Dan Install Dependensi**
    ```bash
    cd news-app
@@ -67,6 +68,7 @@ Pastikan Anda telah menginstal perangkat berikut di sistem Anda:
    GOOGLE_CLIENT_ID=your_google_client_id
    GOOGLE_CLIENT_SECRET=your_google_client_secret
 
+
 4. **Jalankan Aplikasi** :
    ```bash
     npm run dev
@@ -74,6 +76,7 @@ Pastikan Anda telah menginstal perangkat berikut di sistem Anda:
 5.**Buka Di Browser**:
    ```bash
    http://localhost:3000
+
 
 
 
