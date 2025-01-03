@@ -1,3 +1,21 @@
+## 👥 Kelompok 3 - Kelas 5 A
+
+| No  | Nama                        | NIM           |
+|-----|-----------------------------|---------------|
+| 1   | Virganda Rimba Asmara       | 22104410010   |
+| 2   | Zoulvia Hanest Khinanti     | 21104410011   |
+| 3   | Rizky Yuniz Teresya         | 21104410013   |
+| 4   | Tandito Dwi Oktavian        | 22104410017   |
+| 5   | Muhamad Gus Amix Kusuma     | 22104410054   |
+| 6   | Bintang Lailatul Mukharomah | 22104410062   |
+
+---
+
+## 📚 Mata Kuliah
+**Pemrograman API**
+
+---
+
 # 🌟 Jurnalight 🌟
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/gusamixk/news-app)
@@ -6,7 +24,7 @@
 
 **Web Blog Jurnalight**
 
-Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan berita terkini dengan fitur eksklusif untuk pengguna yang terdaftar. Dengan Jurnalight, pengguna dapat menikmati berita terbaru, artikel mendalam, serta layanan premium yang memungkinkan pengguna mengunggah berita melalui admin. Platform ini memberikan akses mudah ke berita dengan antarmuka yang intuitif dan modern.
+Jurnalight adalah platform blog berita online yang dirancang untuk menyajikan berita terkini dengan fitur eksklusif bagi pengguna yang terdaftar. Dengan Jurnalight, pengguna dapat menikmati berita terbaru, artikel mendalam, serta layanan premium yang memungkinkan pengguna mengunggah berita melalui admin. Website ini dikembangkan menggunakan framework **Next.js** untuk performa cepat dan pengelolaan halaman yang dinamis, serta didukung oleh **Tailwind CSS** untuk desain antarmuka yang modern dan responsif. Platform ini memberikan akses mudah ke berita dengan pengalaman pengguna yang intuitif dan efisien.
 
 ---
 
