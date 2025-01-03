@@ -1,3 +1,4 @@
+// app/api/auth/login.js
 import connectDB from "@/app/lib/config/db";
 import User from "@/app/lib/models/user";
 import { generateToken } from "@/app/utils/jwt";
@@ -5,7 +6,7 @@ import { generateToken } from "@/app/utils/jwt";
 export async function POST(req) {
   const { email, password } = await req.json();
 
-  // Validasi input
+  // Validate input
   if (!email || !password) {
     return new Response(
       JSON.stringify({ error: "Please fill in all fields" }),
@@ -14,20 +15,20 @@ export async function POST(req) {
   }
 
   try {
-    // Koneksi ke database
+    // Connect to DB
     await connectDB();
 
-    // Cari user berdasarkan email
+    // Find user by email
     const user = await User.findOne({ email });
-    if (!user || user.password !== password) {
+    if (!user || !(await user.matchPassword(password))) {
       return new Response(
         JSON.stringify({ error: "Invalid email or password" }),
         { status: 401 }
       );
     }
 
-    // Buat token JWT
-    const token = generateToken({ id: user._id, email: user.email }); 
+    // Generate JWT token
+    const token = generateToken({ id: user._id, email: user.email });
 
     return new Response(
       JSON.stringify({
