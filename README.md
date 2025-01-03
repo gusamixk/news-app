@@ -5,7 +5,7 @@
 | 1   | Virganda Rimba Asmara       | 22104410010   |
 | 2   | Zoulvia Hanest Khinanti     | 21104410011   |
 | 3   | Rizky Yuniz Teresya         | 21104410013   |
-| 4   | Tandito Dwi Oktavian        | 22104410017   |
+| 4   | Tandiyo Dwi Oktavian        | 22104410017   |
 | 5   | Muhamad Gus Amix Kusuma     | 22104410054   |
 | 6   | Bintang Lailatul Mukharomah | 22104410062   |
 
@@ -79,7 +79,7 @@ npm install
 
 # Buat dan konfigurasi file .env
 # Tambahkan konfigurasi berikut ke file .env Anda:
-PORT=5000
+PORT=3000
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
 MIDTRANS_SERVER_KEY=your_midtrans_server_key
