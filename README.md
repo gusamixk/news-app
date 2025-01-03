@@ -49,35 +49,27 @@ Pastikan Anda telah menginstal perangkat berikut di sistem Anda:
 - **Midtrans Snap**: Untuk menangani pembayaran.
 - **Google Developer Console**: Untuk konfigurasi OAuth.
 
-### Langkah Instalasi
+### 1. Clone Repositori
 
-1. **Clone repositori ini**:
-   ```bash
-   git clone https://github.com/gusamixk/news-app.git
-2. **Masuk Ke Direktori Proyek Dan Install Dependensi**
-   ```bash
-   cd news-app
-   npm install
+```bash
+# Clone repositori
+git clone https://github.com/gusamixk/news-app.git
 
-3.**Konfigurasikan file .env: Setelah dependensi terinstal, buat file .env di direktori proyek dan tambahkan konfigurasi berikut (gantilah dengan nilai Anda sendiri):**:
-   ```env
-   PORT=5000
-   MONGO_URI=your_mongodb_uri
-   JWT_SECRET=your_jwt_secret
-   MIDTRANS_SERVER_KEY=your_midtrans_server_key
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
+# Masuk ke direktori proyek dan install dependensi
+cd news-app
+npm install
 
+# Buat dan konfigurasi file .env
+# Tambahkan konfigurasi berikut ke file .env Anda:
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+MIDTRANS_SERVER_KEY=your_midtrans_server_key
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-4. **Jalankan Aplikasi** :
-   ```bash
-    npm run dev
+# Jalankan aplikasi
+npm run dev
 
-5.**Buka Di Browser**:
-   ```bash
-   http://localhost:3000
-
-
-
-
-
+# Akses di browser di:
+# http://localhost:3000
